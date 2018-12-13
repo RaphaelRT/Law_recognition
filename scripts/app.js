@@ -40,6 +40,15 @@ $start.addEventListener('click', () => {
   console.log('Ready');
 })
 
+$start.addEventListener('touchstart', () => {
+  recognition.start();
+  console.log('Ready');
+})
+$start.addEventListener('touchend', () => {
+  recognition.stop();
+  console.log('Not Ready');
+})
+
 recognition.onresult = function(event) {
   var last = event.results.length - 1;
   var result = event.results[last][0].transcript;
