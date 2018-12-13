@@ -1,3 +1,24 @@
+
+
+
+
+// dbRef.on('value', snap => test.innerText = snap.val())
+const test = document.querySelector('.test')
+var config = {
+  apiKey: "AIzaSyARbIXRJp5Ra4ug1IRm8Pw52Ghtuy2VhZQ",
+  authDomain: "speechrecognition-cac63.firebaseapp.com",
+  databaseURL: "https://speechrecognition-cac63.firebaseio.com",
+  projectId: "speechrecognition-cac63",
+  storageBucket: "speechrecognition-cac63.appspot.com",
+  messagingSenderId: "826890476546"
+};
+firebase.initializeApp(config);
+
+
+
+
+
+
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -12,6 +33,7 @@ recognition.maxAlternatives = 1;
 
 var diagnostic = document.querySelector('.output');
 const $start = document.querySelector('.start')
+
 
 $start.addEventListener('click', () => {
   recognition.start();
@@ -45,13 +67,22 @@ recognition.onresult = function(event) {
       // console.log(res.entities.obstacle[0].value)
       // console.log(res.entities.vehicule[0].value)
       intent = res.entities.Intent[0].value
-      action = res.entities.action[0].value
-      obstacle = res.entities.obstacle[0].value
-      vehicule = res.entities.vehicule[0].value
+      // action = res.entities.action[0].value
+      // obstacle = res.entities.obstacle[0].value
+      // vehicule = res.entities.vehicule[0].value
       init()
     })
   const init = () => {
-    console.log(intent);
+    // Initialize Firebase
+
+    const dbRef = firebase.database().ref().child('Intent')
+    dbRef.on('value',snap =>{
+      var json_string = JSON.stringify(snap.val(), null, 3)
+      obj = JSON.parse(json_string)
+      console.log(obj[intent]);
+      var whatToSay = obj[intent]
+      responsiveVoice.speak(whatToSay,"French Male",{rate: 1.2});
+    })
   }
 
 }
