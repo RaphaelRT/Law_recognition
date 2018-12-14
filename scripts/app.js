@@ -1,8 +1,3 @@
-
-
-
-
-// dbRef.on('value', snap => test.innerText = snap.val())
 const test = document.querySelector('.test')
 var config = {
   apiKey: "AIzaSyARbIXRJp5Ra4ug1IRm8Pw52Ghtuy2VhZQ",
@@ -35,11 +30,16 @@ recognition.maxAlternatives = 1;
 var diagnostic = document.querySelector('.output');
 const $start = document.querySelector('.start')
 
+var count = 0
+$start.addEventListener('mousedown', () => {
+    recognition.start();
+    count ++
+    console.log('start');
 
-$start.addEventListener('click', () => {
-  recognition.start();
-  console.log('Ready');
 })
+
+
+
 window.addEventListener('load',()=>{
     console.log('loaded');
 })
@@ -58,9 +58,9 @@ recognition.onresult = function(event) {
   var result = event.results[last][0].transcript;
   diagnostic.textContent = 'MOI : ' + result + '.';
   console.log('Confidence: ' + event.results[0][0].confidence);
-
+  console.log(count);
   recognition.onspeechend = function() {
-    recognition.stop();
+      recognition.stop();
   }
 
   const q = result;
