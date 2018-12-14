@@ -93,8 +93,8 @@ recognition.onresult = function(event) {
       var json_string = JSON.stringify(snap.val(), null, 3)
       obj = JSON.parse(json_string)
       console.log(obj[intent]);
-      // var whatToSay = obj[intent]
-      // responsiveVoice.speak(whatToSay,"French Male",{rate: 1.2});
+      var whatToSay = obj[intent]
+      responsiveVoice.speak(whatToSay,"French Male",{rate: 1.2});
     })
   }
 
