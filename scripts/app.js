@@ -13,9 +13,10 @@ var config = {
   messagingSenderId: "826890476546"
 };
 firebase.initializeApp(config);
-
-
-
+var constraints = {audio:true}
+navigator.mediaDevices.getUserMedia(constraints)
+.then(function(stream) {
+  /* use the stream */
 
 
 
@@ -38,6 +39,9 @@ const $start = document.querySelector('.start')
 $start.addEventListener('click', () => {
   recognition.start();
   console.log('Ready');
+})
+window.addEventListener('load',()=>{
+    console.log('loaded');
 })
 
 $start.addEventListener('touchstart', () => {
@@ -95,3 +99,7 @@ recognition.onresult = function(event) {
   }
 
 }
+})
+.catch(function(err) {
+  console.log(err.name + ": " + err.message);
+});
