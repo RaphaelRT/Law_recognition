@@ -12,14 +12,33 @@
   </head>
     <body>
       <div class="container">
-
-        <h1 class="test"></h1>
-        <button class="start" allow="microphone"></button>
-        <div class="recognition">
-          <p class="output"></p>
+        <div class="dialogue">
+          <img class="city"src="image\city.svg" alt="">
+          <img class="mobile_city" src="image/mobile_city.svg" alt="">
+          <div class="dialogue_container">
+            <div class="dialogue_response">
+              <p class="response"></p>
+            </div>
+            <img class="dialogue_txt"src="image/dialogue_txt.svg" alt="">
+            <img class="mobile_dialogue"src="image\mobile_dialogue.svg" alt="">
+            <div class="chicken_container">
+              <img class="chicken"src="image\chicken.svg" alt="">
+            </div>
+          </div>
+          <div class="recognition">
+            <form class="" >
+                <input class="talk" type="text">
+            </form>
+            <button class="micro_img">
+              <img class="micro"src="image\micro.svg" alt="">
+            </button>
+          </div>
+        </div>
+        <div class="mobile_container">
+        </div>
       </div>
-    </div>
-
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+      <script src="http://malsup.github.com/jquery.form.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
       <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
       <script src="scripts/app.js" charset="utf-8"></script>
