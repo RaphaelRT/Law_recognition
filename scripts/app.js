@@ -56,10 +56,10 @@ navigator.mediaDevices.getUserMedia(constraints)
       recognition.start();
       console.log('Ready');
     })
-    // $micro.addEventListener('touchend', () => {
-    //   recognition.stop();
-    //   console.log('Not Ready');
-    // })
+    $micro.addEventListener('touchend', () => {
+      recognition.stop();
+      console.log('Not Ready');
+    })
 
     recognition.onresult = function(event) {
       var last = event.results.length - 1;
