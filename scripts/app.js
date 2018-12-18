@@ -8,12 +8,12 @@ var config = {
   messagingSenderId: "826890476546"
 };
 firebase.initializeApp(config);
-var constraints = {
-  audio: true
-}
-navigator.mediaDevices.getUserMedia(constraints)
-  .then(function(stream) {
-    /* use the stream */
+// var constraints = {
+//   audio: true
+// }
+// navigator.mediaDevices.getUserMedia(constraints)
+//   .then(function(stream) {
+//     /* use the stream */
 
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
     var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -31,20 +31,99 @@ navigator.mediaDevices.getUserMedia(constraints)
     const $micro = document.querySelector('.micro_img')
     var $response = document.querySelector('.response')
     const $micro_img = document.querySelector('.micro')
+    var $form_send = document.querySelector('.form_send')
 
+    $form_send.addEventListener('submit', (_event) =>{
+      _event.preventDefault()
+      var submit = $talk.value
+      const q = submit;
+      const uri = 'https://api.wit.ai/message?q=' + q;
+      const auth = 'Bearer ' + '3MZJGW3Y6XFUAIEH3BEIDMCHF6S4OCBG';
+
+      fetch(uri, {
+          headers: {
+            Authorization: auth
+          }
+        })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          // console.log(res.entities.Intent[0].value)
+          // console.log(res.entities.action[0].value)
+          // console.log(res.entities.obstacle[0].value)
+          // console.log(res.entities.vehicule[0].value)
+          console.log(res.entities.Intent);
+
+          if (res.entities.Intent == undefined) {
+            $response.innerHTML = "Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?"
+            responsiveVoice.speak("Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?", "French Female", {
+              rate: 1.2
+            });
+          } else {
+            intent = res.entities.Intent[0].value
+            // action = res.entities.action[0].value
+            // obstacle = res.entities.obstacle[0].value
+            // vehicule = res.entities.vehicule[0].value
+            const dbRef = firebase.database().ref().child('Intent')
+            dbRef.on('value', snap => {
+              var json_string = JSON.stringify(snap.val(), null, 3)
+              obj = JSON.parse(json_string)
+              console.log(obj[intent]);
+              var whatToSay = obj[intent]
+              $response.innerHTML = whatToSay
+              responsiveVoice.speak(whatToSay, "French Female", {
+                rate: 1.2
+              });
+            })
+          }
+        })
+
+
+
+    })
     // document.onkeydown = function() {
     //   if (window.event.keyCode == '13') {
-    //     console.log($talk.value);
+    //   console.log('test');
     //   }
-    // }
+    //    }
+
+    window.addEventListener('load', () => {
+
+      })
+        var has_started = 0
+        recognition.onspeechstart = function() {
+          console.log(has_started);
+          has_started = 1
+        };
 
 
-    var count = 0
-    $micro.addEventListener('mousedown', () => {
-      recognition.start();
-      count++
-      console.log('start');
-    })
+        recognition.onspeechend = function() {
+          console.log(has_started);
+          has_started = 0
+        };
+        if (has_started == 0) {
+          $micro.addEventListener('click', () => {
+            recognition.stop()
+              recognition.start();
+              console.log('stopped');
+          })
+        }
+        if (has_started == 1) {
+          $micro.addEventListener('click', () => {
+              recognition.stop();
+              recognition.start();
+              console.log('started');
+          })
+        }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -52,21 +131,19 @@ navigator.mediaDevices.getUserMedia(constraints)
       console.log('loaded');
     })
 
-    $micro.addEventListener('touchstart', () => {
-      recognition.start();
-      console.log('Ready');
-    })
-    $micro.addEventListener('touchend', () => {
-      recognition.stop();
-      console.log('Not Ready');
-    })
+    //
+    // $micro.addEventListener('touchstart', (_event) => {
+    //     _event.preventDefault()
+    //     recognition.start();
+    // })
+    //
 
     recognition.onresult = function(event) {
       var last = event.results.length - 1;
       var result = event.results[last][0].transcript;
       $talk.value = result + '.';
       console.log('Confidence: ' + event.results[0][0].confidence);
-      console.log(count);
+      console.log();
       recognition.onspeechend = function() {
         recognition.stop();
       }
@@ -103,10 +180,17 @@ navigator.mediaDevices.getUserMedia(constraints)
 
           if (res.entities.Intent == undefined) {
             $response.innerHTML = "Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?"
-            responsiveVoice.speak("Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?", "French Male", {
+            responsiveVoice.speak("Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?", "French Female", {
               rate: 1.2
             });
-          } else {
+          }
+          // else if (res.entities.Intent == undefined && !res.entities.insult_word == undefined) {
+          //   $response.innerHTML = "C'est vulgaire ce que vous me dites!"
+          //   responsiveVoice.speak("C'est vulgaire ce que vous me dites!", "French Female", {
+          //     rate: 1.2
+          //   });
+          // }
+          else {
             intent = res.entities.Intent[0].value
             // action = res.entities.action[0].value
             // obstacle = res.entities.obstacle[0].value
@@ -123,11 +207,10 @@ navigator.mediaDevices.getUserMedia(constraints)
           console.log(obj[intent]);
           var whatToSay = obj[intent]
           $response.innerHTML = whatToSay
-          responsiveVoice.speak(whatToSay, "French Male", {
-            rate: 1.2
+          responsiveVoice.speak(whatToSay, "French Female", {
           });
         })
       }
 
     }
-  })
+  // })
