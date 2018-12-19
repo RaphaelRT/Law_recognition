@@ -1,3 +1,4 @@
+
 body, html{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -14,6 +15,19 @@ body, html{
   height: 100vh;
   position: absolute;
 }
+.information{
+  position: absolute;
+  z-index: 1000;
+  top: 7vh;
+  left: 85vw;
+  width: 4vw;
+  height: 7vh;
+  cursor: pointer;
+
+}
+.information h3{
+  font-size: 1.5em;
+}
 .container .dialogue{
   width: 100vw;
   height: 100vh;
@@ -26,14 +40,15 @@ body, html{
   width: 100vw;
   height: 100vh;
   opacity: 0.36;
-
-
 }
 .dialogue_container{
   position: relative;
-  width: 38vw;
+  width: 10vw;
   top: 31.5vh;
   left: 33.2vw;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
 }
 .dialogue_container img{
   width: 100%;
@@ -47,16 +62,18 @@ body, html{
   text-align: center;
 }
 .dialogue_response p{
-  width: 90%;
-  top: 35%;
-  left: 5%;
+  top: 30%;
+  left: 9%;
+  width: 80%;
+  line-height: 120%;
+  letter-spacing: 0.5px;
   position: absolute;
 }
 .chicken_container{
   position: absolute;
   width: 15vw;
-  top: 82%;
-  right: 94%;
+  top: 106%;
+  right: 73%;
 }
 .chicken_container img{
   width: 100%;
@@ -64,8 +81,8 @@ body, html{
 .recognition{
   position: absolute;
   background: #ffff;
-  width: 25vw;
-  height: 4vh;
+  width: 27vw;
+  height: 8.5vh;
   left: 70vw;
   top:90vh;
   border-radius: 50px;
@@ -73,20 +90,23 @@ body, html{
 .recognition input{
   position: absolute;
   background: #ffff;
+  top: 2vh;
   left: 1vw;
   width: 22vw;
   height: 4vh;
 }
 .micro_img{
-  width: 1.5vw;
+  width: 4.5vw;
   position: absolute;
-  top: 0.5vh;
+  top: 1.5vh;
   left:23vw;
   cursor: pointer;
 
 }
 .micro_img img{
-  width: 100%;
+  width: 60%;
+  /* filter :invert(0.5) sepia(1) saturate(5) hue-rotate(310deg); */
+
 }
   .mobile_city{
     display: none;
@@ -94,10 +114,206 @@ body, html{
   .mobile_dialogue{
     display: none;
   }
-@media only screen and (min-width:456px) and (max-width:768px){
+  .information_popup{
+    width: 100vw;
+    height: 100vh;
+    background: #A7CDFE;
+    position: absolute;
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+  .information_popup .loi_de_coco {
+    width: 50vw;
+    text-align: center;
+    position: absolute;
+  }
+  .information_popup .loi_de_coco p{
+    width: 70%;
+    margin: auto;
+    padding-top: 5vh;
+  }
+  .example{
+    margin-top: 5vh;
+  }
+.cross{
+  width: 5vw;
+  height: 8vh;
+  top: 8vh;
+  left: 87vw;
+  position: absolute;
+  z-index: 1000;
+
+  /* border: solid 1px black; */
+}
+.cross span{
+  display: inline-block;
+  width: 0.5vw;
+  height: 6vh;
+  background-color: black;
+}
+.cross :first-child{
+  transform: rotate(50deg);
+  left: -1px;
+  position: absolute;
+}
+.cross :last-child{
+  transform: rotate(-50deg);
+}
+.information_img{
+  width: 50%;
+}
+.loi_container{
+  background-color: #ffffff;
+  width: 50vw;
+  height: 70vh;
+  position: absolute;
+  left: 50vh;
+  top: 25vh;
+  border-radius: 3vh;
+  opacity: 0.9;
+  line-height: 120%;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+}
+.title{
+  position: absolute;
+  z-index: 1000;
+  width: 50vw;
+  height: 20vh;
+  top: 5vh;
+  left: 15vw;
+}
+.title h1{
+font-size: 6em;
+}
+@media only screen and (min-width:767px) and (max-width:1025px) {
+  .information{
+    position: absolute;
+    z-index: 1000;
+    top: 8vh;
+    left: 85vw;
+  }
+  .mobile_dialogue{
+    display: block;
+    height: 48vh;
+  }
+
+
+  .dialogue_container{
+    position: relative;
+    width: 50vw;
+    top: 3.5vh;
+    left: 24.2vw;
+  }
+
+  .chicken_container{
+    position: absolute;
+    width: 21vw;
+    right: 54%;
+  }
+  .chicken_container img{
+    width: 100%;
+  }
+  .dialogue_txt{
+    display: none;
+  }
+  .dialogue_response{
+    width: 10vh;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+  }
+  .dialogue_response p{
+    width: 32%;
+    top: 16%;
+    left: 34%;
+    position: fixed;
+    font-size: 1.5em;
+  }
+
+  .recognition{
+    position: absolute;
+    background: #ffff;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
+    top:82vh;
+    border-radius: 50px;
+  }
+  .recognition input{
+    position: absolute;
+    background: #ffff;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
+    top: 0vh;
+    border-radius: 50px;
+    font-size: 1.5em;
+  }
+  .micro_img{
+    width: 7.5vw;
+    position: absolute;
+    top: 1.5vh;
+    left: 90vw;
+    cursor: pointer;
+  }
+  .micro_img img{
+    width: 100%;
+  }
+  .information_img{
+    width: 150%;
+  }
+  .loi_container{
+      left:5vh;
+      width: 80vw;
+  }
+  .information_popup .loi_de_coco {
+    width: 50vh;
+    text-align: center;
+    position: absolute;
+    left: 7vw;
+    top: 7vh;
+  }
+  .information_popup .loi_de_coco p{
+    width: 70%;
+    margin: auto;
+    padding-top: 5vh;
+    font-size: 1.5em;
+    line-height: 2.5vh;
+  }
+    .information_popup .loi_de_coco h2{
+      font-size: 1.5em;
+      line-height: 2.5vh;
+    }
+  .title{
+    position: absolute;
+    z-index: 1000;
+    width: 50vw;
+    height: 20vh;
+    left: 2.5vh;
+
+  }
+  .title h1{
+  font-size: 2em;
+  }
+
+}
+@media (max-width:768px){
 
   .city{
     display: none;
+  }
+  .information{
+    position: absolute;
+    z-index: 1000;
+    top: 8vh;
+    left: 85vw;
   }
   .mobile_dialogue{
     display: block;
@@ -114,15 +330,14 @@ body, html{
   .dialogue_container{
     position: relative;
     width: 50vw;
-    top: 10.5vh;
-    left: 26.2vw;
+    top: 3.5vh;
+    left: 24.2vw;
   }
 
   .chicken_container{
     position: absolute;
     width: 21vw;
     right: 54%;
-    padding-top: 10vh;
   }
   .chicken_container img{
     width: 100%;
@@ -139,44 +354,81 @@ body, html{
     text-align: center;
   }
   .dialogue_response p{
-    width: 40%;
-    top: 19%;
-    left: 31%;
+    width: 20%;
+    top: 16%;
+    left: 38%;
     position: fixed;
   }
 
   .recognition{
     position: absolute;
     background: #ffff;
-    width: 60vw;
-    height: 10vh;
-    left: 20vw;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
     top:82vh;
     border-radius: 50px;
   }
   .recognition input{
     position: absolute;
     background: #ffff;
-    width: 49vw;
-    height: 10vh;
-    left: 2vw;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
+    top: 0vh;
     border-radius: 50px;
   }
   .micro_img{
     width: 7.5vw;
     position: absolute;
     top: 1.5vh;
-    left: 50vw;
+    left: 90vw;
     cursor: pointer;
   }
   .micro_img img{
     width: 100%;
   }
+  .information_img{
+    width: 150%;
+  }
+  .loi_container{
+      left:5vh;
+      width: 80vw;
+  }
+  .information_popup .loi_de_coco {
+    width: 50vh;
+    text-align: center;
+    position: absolute;
+    left: 7vw;
+    top: 7vh;
+  }
+  .information_popup .loi_de_coco p{
+    width: 70%;
+    margin: auto;
+    padding-top: 5vh;
+  }
+  .title{
+    position: absolute;
+    z-index: 1000;
+    width: 50vw;
+    height: 20vh;
+    left: 2.5vh;
+
+  }
+  .title h1{
+  font-size: 2em;
+  }
 
 }
-@media (max-width:456px)  {
+@media only screen and (min-width:374px) and (max-width:456px)  {
   .city{
     display: none;
+  }
+  .information{
+    position: absolute;
+    z-index: 1000;
+    top: 5vh;
+    left: 66vw;
   }
   .mobile_dialogue{
     display: block;
@@ -193,7 +445,7 @@ body, html{
   .dialogue_container{
     position: relative;
     width: 60vw;
-    top: 10.5vh;
+    top: 9.5vh;
     left: 22.2vw;
   }
 
@@ -201,7 +453,6 @@ body, html{
     position: absolute;
     width: 30vw;
     right: 54%;
-    padding-top: 10vh;
   }
   .chicken_container img{
     width: 100%;
@@ -219,7 +470,7 @@ body, html{
   }
   .dialogue_response p{
     width: 40%;
-    top: 28%;
+    top: 20%;
     left: 31%;
     position: fixed;
   }
@@ -227,28 +478,167 @@ body, html{
   .recognition{
     position: absolute;
     background: #ffff;
-    width: 60vw;
-    height: 10vh;
-    left: 20vw;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
     top:82vh;
     border-radius: 50px;
   }
   .recognition input{
     position: absolute;
     background: #ffff;
-    width: 49vw;
-    height: 10vh;
-    left: 2vw;
+    width: 98vw;
+    height: 9vh;
+    left: 1vw;
     border-radius: 50px;
+    top: 0vh;
   }
   .micro_img{
-    width: 7.5vw;
+    width: 16.5vw;
     position: absolute;
-    top: 2.5vh;
-    left: 50vw;
+    top: 1.5vh;
+    left: 83vw;
     cursor: pointer;
   }
   .micro_img img{
+    width: 70%;
+  }
+  .information_img{
     width: 100%;
   }
+  .loi_container{
+      left:5vh;
+      width: 80vw;
+      overflow: scroll;
+
+  }
+  .information_popup .loi_de_coco {
+    width: 50vh;
+    text-align: center;
+    position: absolute;
+    left: -3vw;
+  }
+  .information_popup .loi_de_coco p{
+    width: 70%;
+    margin: auto;
+    padding-top: 5vh;
+  }
+  .title{
+    position: absolute;
+    z-index: 1000;
+    width: 50vw;
+    height: 20vh;
+
+  }
+  .title h1{
+  font-size: 2em;
+  }
+}
+@media only screen and (min-width : 321px) and (max-width : 376px) {
+.dialogue_container{
+  left: 10.8vh;
+  top: 11.5vh;
+  width: 63vw;
+}
+.dialogue_response p{
+  width: 43%;
+  top: 20%;
+  left: 31%;
+  position: fixed;
+}
+.information{
+  left: 82vw;
+}
+.information_img{
+  width: 200%;
+}
+.loi_container{
+    left:5vh;
+    width: 80vw;
+}
+.information_popup .loi_de_coco {
+  width: 50vh;
+  text-align: center;
+  position: absolute;
+  left: -14vw;
+}
+.information_popup .loi_de_coco p{
+  width: 70%;
+  margin: auto;
+  padding-top: 5vh;
+}
+.loi_container{
+    left:5vh;
+    width: 80vw;
+    overflow: scroll;
+}
+.information_popup .loi_de_coco {
+  width: 50vh;
+  text-align: center;
+  position: absolute;
+  left: -3vw;
+
+}
+.information_popup .loi_de_coco p{
+  width: 70%;
+  margin: auto;
+  padding-top: 5vh;
+}
+.title{
+  position: absolute;
+  z-index: 1000;
+  width: 50vw;
+  height: 20vh;
+
+}
+.title h1{
+font-size: 2em;
+}
+
+}
+@media only screen and (min-width : 2px) and (max-width : 320px) {
+.dialogue_container{
+  left: 8.8vh;
+  width: 72vw;
+  top: 15.5vh;
+}
+.dialogue_response p{
+  width: 43%;
+  top: 20%;
+  left: 31%;
+  position: fixed;
+}
+.information{
+  left: 62vw;
+}
+.information_img{
+  width: 100%;
+}
+.loi_container{
+    left:5vh;
+    width: 80vw;
+    overflow: scroll;
+}
+.information_popup .loi_de_coco {
+  width: 50vh;
+  text-align: center;
+  position: absolute;
+  left: -3vw;
+}
+.information_popup .loi_de_coco p{
+  width: 70%;
+  margin: auto;
+  padding-top: 5vh;
+}
+.title{
+  position: absolute;
+  z-index: 1000;
+  width: 50vw;
+  height: 20vh;
+
+}
+.title h1{
+font-size: 1.5em;
+}
+
 }

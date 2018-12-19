@@ -14,7 +14,9 @@ firebase.initializeApp(config);
 // navigator.mediaDevices.getUserMedia(constraints)
 //   .then(function(stream) {
 //     /* use the stream */
-
+if( screen.width <= 480 ) {
+    console.log('coucou bande couille');
+}
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
     var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
     var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -26,12 +28,43 @@ firebase.initializeApp(config);
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
-
+    const $container = document.querySelector('.container')
     var $talk = document.querySelector('.talk');
     const $micro = document.querySelector('.micro_img')
     var $response = document.querySelector('.response')
     const $micro_img = document.querySelector('.micro')
     var $form_send = document.querySelector('.form_send')
+    const $information = document.querySelector('.information')
+    const $dialogue_container = document.querySelector('.dialogue_container')
+    const $cross = document.querySelector('.cross')
+    const $pop_up = document.querySelector(".information_popup");
+
+
+
+    const resize = () =>{
+      if (screen.width > 1025) {
+        var bounding = $response.getBoundingClientRect()
+        console.log(bounding);
+        const response_innerss =  bounding.bottom * 1
+        console.log(response_innerss);
+        $dialogue_container.style.width = response_innerss + 'px'
+      }
+    }
+    resize()
+
+window.addEventListener('resize', ()=>{
+console.log(screen.width);
+})
+
+
+    $information.addEventListener('click', ()=>{
+      $information.style.display="none"
+      $pop_up.style.display = "block"
+    })
+    $cross.addEventListener('click', ()=>{
+      $information.style.display="block"
+      $pop_up.style.display = "none"
+    })
 
     $form_send.addEventListener('submit', (_event) =>{
       _event.preventDefault()
@@ -56,6 +89,9 @@ firebase.initializeApp(config);
 
           if (res.entities.Intent == undefined) {
             $response.innerHTML = "Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?"
+            console.log($response.offsetWidth);
+            console.log($dialogue_container.offsetWidth);
+            resize()
             responsiveVoice.speak("Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?", "French Female", {
               rate: 1.2
             });
@@ -71,6 +107,7 @@ firebase.initializeApp(config);
               console.log(obj[intent]);
               var whatToSay = obj[intent]
               $response.innerHTML = whatToSay
+              resize()
               responsiveVoice.speak(whatToSay, "French Female", {
                 rate: 1.2
               });
@@ -94,8 +131,8 @@ firebase.initializeApp(config);
         recognition.onspeechstart = function() {
           console.log(has_started);
           has_started = 1
+          $micro.style.filter = "invert(0.5) sepia(1) saturate(5) hue-rotate(310deg) "
         };
-
 
         recognition.onspeechend = function() {
           console.log(has_started);
@@ -107,6 +144,7 @@ firebase.initializeApp(config);
               recognition.start();
               console.log('stopped');
           })
+
         }
         if (has_started == 1) {
           $micro.addEventListener('click', () => {
@@ -139,6 +177,8 @@ firebase.initializeApp(config);
     //
 
     recognition.onresult = function(event) {
+
+      $micro.style.filter = "none"
       var last = event.results.length - 1;
       var result = event.results[last][0].transcript;
       $talk.value = result + '.';
@@ -180,6 +220,7 @@ firebase.initializeApp(config);
 
           if (res.entities.Intent == undefined) {
             $response.innerHTML = "Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?"
+            resize()
             responsiveVoice.speak("Je n'ai pas bien compris ce que vous avez dit, pouvez-vous répéter ?", "French Female", {
               rate: 1.2
             });
@@ -207,6 +248,8 @@ firebase.initializeApp(config);
           console.log(obj[intent]);
           var whatToSay = obj[intent]
           $response.innerHTML = whatToSay
+          $dialogue_container.style.width = $response.offsetWidth * 1.2+ 'px'
+          resize()
           responsiveVoice.speak(whatToSay, "French Female", {
           });
         })
