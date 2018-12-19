@@ -1,73 +1,72 @@
 <!DOCTYPE html>
 <html lang=fr>
-  <head>
-    <meta charset="utf-8"/>
-    <title> Lois de Coco </title>
-    <meta name="Mon premier site" content="le premier"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles\reset.css" />
-    <link rel="stylesheet" type="text/css" href="styles\style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="image/fav.png" />
-  </head>
-    <body>
-      <div class="container">
-        <div class="title">
-          <h1>Lois de Coco</h1>
+<head>
+  <meta charset="utf-8" />
+  <title> Lois de Coco </title>
+  <meta name="Mon premier site" content="le premier" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles\reset.css" />
+  <link rel="stylesheet" type="text/css" href="styles\style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="image/fav.png" />
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <h1>Lois de Coco</h1>
+    </div>
+    <button class="information" type="button">
+      <img class="information_img" src="image/information.png" alt="">
+    </button>
+    <div class="dialogue">
+      <img class="city" src="image\city.svg" alt="">
+      <img class="mobile_city" src="image/mobile_city.svg" alt="">
+      <div class="dialogue_container">
+        <div class="dialogue_response">
+          <p class="response">Bonjour je m'appelle Coco ! <br>Je suis votre assistant pour mieux comprendre les lois. <br>Pose-moi une question sur tes droits et je te répondrais du mieux que je peux</p>
         </div>
-
-        <button class="information" type="button">
-          <img class="information_img" src="image/information.png" alt="">
+        <img class="dialogue_txt" src="image/dialogue_txt.svg" alt="">
+        <img class="mobile_dialogue" src="image\mobile_dialogue.svg" alt="">
+        <div class="chicken_container">
+          <img class="chicken" src="image\chicken.svg" alt="">
+        </div>
+      </div>
+      <div class="recognition">
+        <form class="form_send">
+          <input class="talk" type="text" placeholder="Entre ta question ou parle">
+        </form>
+        <button class="micro_img">
+          <img class="micro" src="image\micro.svg" alt="">
         </button>
-        <div class="dialogue">
-          <img class="city"src="image\city.svg" alt="">
-          <img class="mobile_city" src="image/mobile_city.svg" alt="">
-          <div class="dialogue_container">
-            <div class="dialogue_response">
-              <p class="response">Bonjour je m'appelle Coco ! <br>Je suis votre assistant pour mieux comprendre les lois. <br>Pose-moi une question sur tes droits et je te répondrais du mieux que je peux</p>
-            </div>
-            <img class="dialogue_txt"src="image/dialogue_txt.svg" alt="">
-            <img class="mobile_dialogue"src="image\mobile_dialogue.svg" alt="">
-            <div class="chicken_container">
-              <img class="chicken"src="image\chicken.svg" alt="">
-            </div>
+      </div>
+    </div>
+    <div class="information_popup">
+      <img class="city" src="image\city.svg" alt="">
+      <img class="mobile_city" src="image/mobile_city.svg" alt="">
+      <div class="cross">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="loi_container">
+        <div class="loi_de_coco">
+          <p>Lois de Coco est un assistant vocal qui vous permettra de vous informez sur les lois du quotidien tout en les simplifiant au maximum pour les rendre plus accessible ainsi qu’abordable pour le grand publique. Loi de Coco s’adresse
+            principalement à des étudiants venant de passer à l’âge adulte et commençant à s’interroger sur leur droit. Lois de Coco est actuellement en cours de développement, les lois présentes dans l’application peuvent contenir certaines erreurs
+            et peuvent manquer de précision. Nous nous en excusons d’avance et nous vous souhaitons la plus agréable des utilisations.</p>
+          <div class="example">
+            <h2>Exemple de question à poser :</h2>
+            <p>Si je me fais attaquer dans la rue, j’ai le droit de me défendre ? <br>
+              J’ai le droit de rouler sur le trottoir à vélo ? <br>
+              Qu’est ce que je risque si je fraude dans le métro ?</p>
           </div>
-          <div class="recognition">
-            <form class="form_send" >
-                <input class="talk" type="text" placeholder="Entre ta question ou parle">
-            </form>
-            <button class="micro_img">
-              <img class="micro"src="image\micro.svg" alt="">
-            </button>
-          </div>
-        </div>
-        <div class="information_popup">
-          <img class="city"src="image\city.svg" alt="">
-          <img class="mobile_city" src="image/mobile_city.svg" alt="">
-          <div class="cross">
-            <span></span>
-            <span></span>
-          </div>
-          <div class="loi_container">
-            <div class="loi_de_coco">
-              <p>Lois de Coco est un assistant vocal qui vous permettra de vous informez sur les lois du quotidien tout en les simplifiant au maximum pour les rendre plus accessible ainsi qu’abordable pour le grand publique. Loi de Coco s’adresse principalement à des étudiants venant de passer à l’âge adulte et commençant à s’interroger sur leur droit.  Lois de Coco est actuellement en cours de développement, les lois présentes dans l’application peuvent contenir certaines erreurs et peuvent manquer de précision. Nous nous en excusons d’avance et nous vous souhaitons la plus agréable des utilisations.</p>
-              <div class="example">
-                <h2>Exemple de question à poser :</h2>
-                <p>Si je me fais attaquer dans la rue, j’ai le droit de me défendre ? <br>
-                    J’ai le droit de rouler sur le trottoir à vélo ? <br>
-                    Qu’est ce que je risque si je fraude dans le métro ?</p>
-              </div>
-
-            </div>
-          </div>
-
 
         </div>
       </div>
-      <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-      <script src="scripts\reponsive.js"></script>
-      <script src="scripts/app.js" charset="utf-8"></script>
-    </body>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+  <script src="scripts\reponsive.js"></script>
+  <script src="scripts/app.js" charset="utf-8"></script>
+</body>
 </html>
